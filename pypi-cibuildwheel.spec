@@ -4,7 +4,7 @@
 #
 Name     : pypi-cibuildwheel
 Version  : 2.7.0
-Release  : 8
+Release  : 9
 URL      : https://files.pythonhosted.org/packages/41/4f/664b69cf3187febc8de15eb92b77b2f266ee908fb44dc3d99bd7f07e43f7/cibuildwheel-2.7.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/41/4f/664b69cf3187febc8de15eb92b77b2f266ee908fb44dc3d99bd7f07e43f7/cibuildwheel-2.7.0.tar.gz
 Summary  : Build Python wheels on CI with minimal configuration.
@@ -79,7 +79,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1655669554
+export SOURCE_DATE_EPOCH=1656365019
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -115,7 +115,7 @@ export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
 export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3 "
 pip install --root=%{buildroot}-v3 --no-deps --ignore-installed dist/*.whl
 popd
-/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
