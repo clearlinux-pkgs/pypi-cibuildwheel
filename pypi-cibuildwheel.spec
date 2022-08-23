@@ -4,7 +4,7 @@
 #
 Name     : pypi-cibuildwheel
 Version  : 2.9.0
-Release  : 14
+Release  : 15
 URL      : https://files.pythonhosted.org/packages/1b/a1/1bcea94b340d553572bbd3c11f610982abe7c36492296bc0ad16660d181c/cibuildwheel-2.9.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/1b/a1/1bcea94b340d553572bbd3c11f610982abe7c36492296bc0ad16660d181c/cibuildwheel-2.9.0.tar.gz
 Summary  : Build Python wheels on CI with minimal configuration.
