@@ -1,5 +1,5 @@
 PKG_NAME := pypi-cibuildwheel
-URL = https://files.pythonhosted.org/packages/c2/56/b8a1635c54c194954bcc257f17373adf61d9ad6ab7489ba6d9a8f0299975/cibuildwheel-2.10.2.tar.gz
+URL = https://files.pythonhosted.org/packages/78/08/e5cb83c8ad2bdfe3022c86b46e379a4badb62c5088c02cffef56ffa5d5ff/cibuildwheel-2.11.1.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
