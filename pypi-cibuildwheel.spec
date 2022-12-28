@@ -4,7 +4,7 @@
 #
 Name     : pypi-cibuildwheel
 Version  : 2.11.4
-Release  : 25
+Release  : 26
 URL      : https://files.pythonhosted.org/packages/cf/64/f7d6fd9ebccf274e5c1edf2f1f48dd857385aa944a832d15e18966b9365c/cibuildwheel-2.11.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/cf/64/f7d6fd9ebccf274e5c1edf2f1f48dd857385aa944a832d15e18966b9365c/cibuildwheel-2.11.4.tar.gz
 Summary  : Build Python wheels on CI with minimal configuration.
@@ -21,6 +21,9 @@ BuildRequires : pypi(filelock)
 BuildRequires : pypi(packaging)
 BuildRequires : pypi(platformdirs)
 BuildRequires : pypi(setuptools)
+# Suppress stripping binaries
+%define __strip /bin/true
+%define debug_package %{nil}
 
 %description
 cibuildwheel
@@ -72,7 +75,6 @@ python3 components for the pypi-cibuildwheel package.
 cd %{_builddir}/cibuildwheel-2.11.4
 pushd ..
 cp -a cibuildwheel-2.11.4 buildavx2
-cp -a cibuildwheel-2.11.4 buildavx512
 popd
 
 %build
@@ -80,19 +82,19 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1672080460
+export SOURCE_DATE_EPOCH=1672262951
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/
-export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 -msse2avx "
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3 "
 export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3 "
