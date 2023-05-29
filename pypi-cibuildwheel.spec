@@ -4,10 +4,10 @@
 # Using build pattern: pyproject
 #
 Name     : pypi-cibuildwheel
-Version  : 2.12.3
-Release  : 30
-URL      : https://files.pythonhosted.org/packages/fc/50/98fc2adc315b1e58b06903c36cf492ebd8611a113fc36381db5edddd0c02/cibuildwheel-2.12.3.tar.gz
-Source0  : https://files.pythonhosted.org/packages/fc/50/98fc2adc315b1e58b06903c36cf492ebd8611a113fc36381db5edddd0c02/cibuildwheel-2.12.3.tar.gz
+Version  : 2.13.0
+Release  : 31
+URL      : https://files.pythonhosted.org/packages/78/ce/45deff4f603477a4e9fc23fb357c543e36cd0d0f42b14b7965501c3d71ad/cibuildwheel-2.13.0.tar.gz
+Source0  : https://files.pythonhosted.org/packages/78/ce/45deff4f603477a4e9fc23fb357c543e36cd0d0f42b14b7965501c3d71ad/cibuildwheel-2.13.0.tar.gz
 Summary  : Build Python wheels on CI with minimal configuration.
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -15,6 +15,7 @@ Requires: pypi-cibuildwheel-bin = %{version}-%{release}
 Requires: pypi-cibuildwheel-python = %{version}-%{release}
 Requires: pypi-cibuildwheel-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
+BuildRequires : pypi(setuptools)
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -65,10 +66,10 @@ python3 components for the pypi-cibuildwheel package.
 
 
 %prep
-%setup -q -n cibuildwheel-2.12.3
-cd %{_builddir}/cibuildwheel-2.12.3
+%setup -q -n cibuildwheel-2.13.0
+cd %{_builddir}/cibuildwheel-2.13.0
 pushd ..
-cp -a cibuildwheel-2.12.3 buildavx2
+cp -a cibuildwheel-2.13.0 buildavx2
 popd
 
 %build
@@ -76,15 +77,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1681918940
+export SOURCE_DATE_EPOCH=1685401671
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 -m build --wheel --skip-dependency-check --no-isolation
 pushd ../buildavx2/
