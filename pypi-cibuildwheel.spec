@@ -4,10 +4,10 @@
 # Using build pattern: pyproject
 #
 Name     : pypi-cibuildwheel
-Version  : 2.14.0
-Release  : 33
-URL      : https://files.pythonhosted.org/packages/e0/49/c246f7022cd03ea9e566955e38ae8daad97b1d2be37cccdc8fa560fa6bff/cibuildwheel-2.14.0.tar.gz
-Source0  : https://files.pythonhosted.org/packages/e0/49/c246f7022cd03ea9e566955e38ae8daad97b1d2be37cccdc8fa560fa6bff/cibuildwheel-2.14.0.tar.gz
+Version  : 2.14.1
+Release  : 34
+URL      : https://files.pythonhosted.org/packages/48/2b/329df4dbc57141084a7fb730988d1b3e232f5154338e6e3a63240b4f20ef/cibuildwheel-2.14.1.tar.gz
+Source0  : https://files.pythonhosted.org/packages/48/2b/329df4dbc57141084a7fb730988d1b3e232f5154338e6e3a63240b4f20ef/cibuildwheel-2.14.1.tar.gz
 Summary  : Build Python wheels on CI with minimal configuration.
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -66,10 +66,10 @@ python3 components for the pypi-cibuildwheel package.
 
 
 %prep
-%setup -q -n cibuildwheel-2.14.0
-cd %{_builddir}/cibuildwheel-2.14.0
+%setup -q -n cibuildwheel-2.14.1
+cd %{_builddir}/cibuildwheel-2.14.1
 pushd ..
-cp -a cibuildwheel-2.14.0 buildavx2
+cp -a cibuildwheel-2.14.1 buildavx2
 popd
 
 %build
@@ -77,7 +77,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689001739
+export SOURCE_DATE_EPOCH=1689611331
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
