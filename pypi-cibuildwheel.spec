@@ -6,10 +6,10 @@
 # autospec commit: fae1327
 #
 Name     : pypi-cibuildwheel
-Version  : 2.16.3
-Release  : 41
-URL      : https://files.pythonhosted.org/packages/9a/d0/67986a5525b713264b63e9e2fd6b96ce7a2b4b126dc46ce21bc162a69745/cibuildwheel-2.16.3.tar.gz
-Source0  : https://files.pythonhosted.org/packages/9a/d0/67986a5525b713264b63e9e2fd6b96ce7a2b4b126dc46ce21bc162a69745/cibuildwheel-2.16.3.tar.gz
+Version  : 2.16.4
+Release  : 42
+URL      : https://files.pythonhosted.org/packages/90/5a/efc41b207752e8fae4f2ee2ca8bcfbfa7828ef1efce09a77042c00dd20c5/cibuildwheel-2.16.4.tar.gz
+Source0  : https://files.pythonhosted.org/packages/90/5a/efc41b207752e8fae4f2ee2ca8bcfbfa7828ef1efce09a77042c00dd20c5/cibuildwheel-2.16.4.tar.gz
 Summary  : Build Python wheels on CI with minimal configuration.
 Group    : Development/Tools
 License  : BSD-2-Clause
@@ -32,7 +32,6 @@ cibuildwheel
 [![Appveyor status](https://ci.appveyor.com/api/projects/status/gt3vwl88yt0y3hur/branch/main?svg=true)](https://ci.appveyor.com/project/joerick/cibuildwheel/branch/main)
 [![CircleCI Status](https://img.shields.io/circleci/build/gh/pypa/cibuildwheel/main?logo=circleci)](https://circleci.com/gh/pypa/cibuildwheel)
 [![Azure Status](https://dev.azure.com/joerick0429/cibuildwheel/_apis/build/status/pypa.cibuildwheel?branchName=main)](https://dev.azure.com/joerick0429/cibuildwheel/_build/latest?definitionId=4&branchName=main)
-[![Cirrus CI Status](https://img.shields.io/cirrus/github/pypa/cibuildwheel/main?logo=cirrusci)](https://cirrus-ci.com/github/pypa/cibuildwheel)
 
 %package bin
 Summary: bin components for the pypi-cibuildwheel package.
@@ -68,10 +67,10 @@ python3 components for the pypi-cibuildwheel package.
 
 
 %prep
-%setup -q -n cibuildwheel-2.16.3
-cd %{_builddir}/cibuildwheel-2.16.3
+%setup -q -n cibuildwheel-2.16.4
+cd %{_builddir}/cibuildwheel-2.16.4
 pushd ..
-cp -a cibuildwheel-2.16.3 buildavx2
+cp -a cibuildwheel-2.16.4 buildavx2
 popd
 
 %build
@@ -79,7 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1706306434
+export SOURCE_DATE_EPOCH=1706544939
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
